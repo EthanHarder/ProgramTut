@@ -18,15 +18,9 @@ public class playerControl : MonoBehaviour
     }
 
     void Update()
-    {
-            
+    {     
         Move();
         Jump();
-    }
-
-    private void FixedUpdate()
-    {
-        
     }
 
     void Jump()
@@ -39,9 +33,12 @@ public class playerControl : MonoBehaviour
     void Move()
     {
         float xInput = Input.GetAxis("Horizontal");
+        Debug.Log(Input.GetKeyDown(KeyCode.W));
         float zInput = Input.GetAxis("Vertical");
-        dir = new Vector3(xInput, 0, zInput) * moveSpeed;
-        rb.AddForce(dir);
+        dir = new Vector3(xInput, 0, zInput).normalized * moveSpeed * Time.deltaTime;
+        rb.AddForce(dir, ForceMode.Impulse);
+       // rb.velocity = dir;
+      
         dir.y = rb.velocity.y;
 
 
@@ -55,7 +52,7 @@ public class playerControl : MonoBehaviour
 
     void checkJumpForce()
     {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse );
 
     }
 }
