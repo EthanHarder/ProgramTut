@@ -188,6 +188,9 @@ GameObject:
   - component: {fileID: 1655254839580821970}
   - component: {fileID: 1655254839580821997}
   - component: {fileID: 1655254839580821999}
+  - component: {fileID: 4513262668393930814}
+  - component: {fileID: 5103315906175544849}
+  - component: {fileID: 5609514574012874612}
   m_Layer: 0
   m_Name: Ranger
   m_TagString: Untagged
@@ -220,12 +223,12 @@ Rigidbody:
   m_GameObject: {fileID: 1889766163777329102}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &1655254839580821997
 CapsuleCollider:
@@ -240,7 +243,7 @@ CapsuleCollider:
   m_Radius: 0.5573797
   m_Height: 2.9022322
   m_Direction: 1
-  m_Center: {x: 0, y: 1.4270763, z: 0.19999999}
+  m_Center: {x: 0, y: 1.426062, z: 0.19999999}
 --- !u!95 &1655254839580821999
 Animator:
   serializedVersion: 3
@@ -260,6 +263,48 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4513262668393930814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889766163777329102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258c7e89158e1ec4fbcf7d37ffbeeccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5103315906175544849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889766163777329102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc7b0369d6970f4d9a97ecd449c5f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validDamageSources:
+  - Enemy
+  Health: 2
+--- !u!114 &5609514574012874612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889766163777329102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be2bf82e6e9a5543a9e4446c6c33d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 15
+  grounded: 0
+  jumpForce: 15
 --- !u!1 &1989351516006134109
 GameObject:
   m_ObjectHideFlags: 0

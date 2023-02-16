@@ -7,26 +7,30 @@ public abstract class EnemyReactBody : MonoBehaviour
 {
 
     protected Vector3 spawnLoc;
-    protected GameObject playerRef;
     protected GameObject rangeRef;
     
     
     protected float speed;
-    public float alertTime;
+    public float alertTimer;
+    public float alertAttentionTime;
     public bool alert;
+    public bool alerted;
     // Start is called before the first frame update
     protected virtual void Start()
     {
         spawnLoc = transform.position;
-        playerRef = GameObject.Find("Ranger");
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (CheckAttentionLost())
+        if (!alerted)
         {
             AlertTimeDecrease();
+        }
+        if (CheckAttentionLost())
+        {
+            alert = false;
         }
 
 
@@ -36,15 +40,28 @@ public abstract class EnemyReactBody : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        if (other == playerRef.GetComponent<Rigidbody>())
+        if (other == PlayerSingleton.pInstance.GetComponent<CapsuleCollider>())
         {
+            Debug.Log("Cat");
             alert = true;
+            alerted = true;
+            alertTimer = alertAttentionTime;
+        }
+    }
+
+    protected virtual void OnTriggerExit(Collider other)
+    {
+        
+        if (other == PlayerSingleton.pInstance.GetComponent<CapsuleCollider>())
+        {
+            Debug.Log("Dog");
+            alerted = false;
         }
     }
 
     protected virtual void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Cat");
+        
         if (other.rigidbody != null && other.rigidbody.GetComponent<HealthSystem>() != null)
         {
             other.rigidbody.GetComponent<HealthSystem> ().RecieveDamageAttempt("Enemy");
@@ -53,12 +70,13 @@ public abstract class EnemyReactBody : MonoBehaviour
 
     protected virtual bool CheckAttentionLost()
     {
-        return alertTime <= 0.0f;
+        return alertTimer <= 0.0f;
     }
 
     protected virtual void AlertTimeDecrease()
     {
-        alertTime -= Time.deltaTime;
+        if (alertTimer > 0.0f)
+        alertTimer -= Time.deltaTime;
     }
 
 }

@@ -7,14 +7,12 @@ public class playerControl : MonoBehaviour
     public float moveSpeed;
     public bool grounded;
     public float jumpForce;
-    private Rigidbody rb;
 
     private Vector3 dir;
 
 
     void Start()
-    {
-        rb = GetComponent<Rigidbody>();
+    { 
     }
 
     void Update()
@@ -35,23 +33,30 @@ public class playerControl : MonoBehaviour
         float xInput = Input.GetAxis("Horizontal");
         float zInput = Input.GetAxis("Vertical");
         dir = new Vector3(xInput, 0, zInput).normalized * moveSpeed * Time.deltaTime;
-        rb.AddForce(dir, ForceMode.Impulse);
-       // rb.velocity = dir;
+        if (dir.magnitude > 0)
+        {
+            PlayerSingleton.pInstance.pAnimator.SetBool("Walking", true);
+        }
+        else
+        {
+            PlayerSingleton.pInstance.pAnimator.SetBool("Walking", false);
+        }
+        PlayerSingleton.pInstance.pRigid.AddForce(dir, ForceMode.Impulse);
       
-        dir.y = rb.velocity.y;
+        dir.y = PlayerSingleton.pInstance.pRigid.velocity.y;
 
 
         Vector3 facingDir = new Vector3(xInput, 0, zInput);
         if (facingDir.magnitude > 0)
         {
-            transform.forward = facingDir.normalized;
+            PlayerSingleton.pInstance.pTransform.forward = facingDir.normalized;
         }
         
     }
 
     void checkJumpForce()
     {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse );
+        PlayerSingleton.pInstance.pRigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse );
 
     }
 }

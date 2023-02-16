@@ -11,9 +11,9 @@ public class SnakeReactBody : EnemyReactBody
         base.Update();
         if (alert)
         {
-            if (playerRef != null)
+            if (PlayerSingleton.pInstance != null)
             {
-                Vector3 direction = (playerRef.transform.position - transform.position).normalized;
+                Vector3 direction = (PlayerSingleton.pInstance.pTransform.position - transform.position).normalized;
                 Quaternion lookRotation = Quaternion.LookRotation(direction);
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
             }
