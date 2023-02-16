@@ -17,6 +17,9 @@ public class SnakeReactBody : EnemyReactBody
                 Quaternion lookRotation = Quaternion.LookRotation(direction);
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
             }
+            Agent.SetDestination(PlayerSingleton.pInstance.pTransform.position);
         }
+        else
+            Agent.SetDestination(spawnLoc);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Collider))]
 public abstract class EnemyReactBody : MonoBehaviour
@@ -8,7 +9,7 @@ public abstract class EnemyReactBody : MonoBehaviour
 
     protected Vector3 spawnLoc;
     protected GameObject rangeRef;
-    
+    protected NavMeshAgent Agent;
     
     protected float speed;
     public float alertTimer;
@@ -19,6 +20,7 @@ public abstract class EnemyReactBody : MonoBehaviour
     protected virtual void Start()
     {
         spawnLoc = transform.position;
+        Agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
