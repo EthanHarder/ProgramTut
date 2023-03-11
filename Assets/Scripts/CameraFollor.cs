@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class CameraFollor : MonoBehaviour
 {
-
+    
     public Vector3 offset;
     public float t;
+
 
     // Update is called once per frame
     void Update()
