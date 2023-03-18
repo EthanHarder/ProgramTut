@@ -66,7 +66,7 @@ public abstract class EnemyReactBody : MonoBehaviour
         
         if (other.rigidbody != null && other.rigidbody.GetComponent<HealthSystem>() != null)
         {
-            other.rigidbody.GetComponent<HealthSystem> ().RecieveDamageAttempt("Enemy");
+            other.rigidbody.GetComponent<HealthSystem>().RecieveDamageAttempt("Enemy");
         }
     }
 

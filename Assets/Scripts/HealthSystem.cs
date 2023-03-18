@@ -8,7 +8,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField]
     public List<string> validDamageSources;
     [SerializeField]
-    public int Health;
+    public int _health;
     public void RecieveDamageAttempt(string source)
     {
        foreach (string s in validDamageSources)
@@ -22,19 +22,19 @@ public class HealthSystem : MonoBehaviour
 
     protected virtual void takeDamage()
     {
-        Health -= 1;
+        _health -= 1;
         DeathCheck();
     }
 
     protected virtual void takeDamage(int Amount)
     {
-        Health -= Amount;
+        _health -= Amount;
         DeathCheck();
     }
 
     protected virtual void DeathCheck()
     {
-        if (Health <= 0)
+        if (_health <= 0)
         {
             Destroy(this.gameObject);
         }

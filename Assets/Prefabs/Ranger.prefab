@@ -189,8 +189,8 @@ GameObject:
   - component: {fileID: 1655254839580821997}
   - component: {fileID: 1655254839580821999}
   - component: {fileID: 4513262668393930814}
-  - component: {fileID: 5103315906175544849}
   - component: {fileID: 5609514574012874612}
+  - component: {fileID: 7482914605023229190}
   m_Layer: 0
   m_Name: Ranger
   m_TagString: Untagged
@@ -275,21 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258c7e89158e1ec4fbcf7d37ffbeeccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5103315906175544849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889766163777329102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfc7b0369d6970f4d9a97ecd449c5f12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  validDamageSources:
-  - Enemy
-  Health: 2
 --- !u!114 &5609514574012874612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +290,22 @@ MonoBehaviour:
   moveSpeed: 15
   grounded: 0
   jumpForce: 15
+--- !u!114 &7482914605023229190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889766163777329102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d235815bdfe650543934aa843789df79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validDamageSources:
+  - Enemy
+  - Hazard
+  _health: 2
 --- !u!1 &1989351516006134109
 GameObject:
   m_ObjectHideFlags: 0

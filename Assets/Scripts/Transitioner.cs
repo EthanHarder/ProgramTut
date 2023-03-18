@@ -15,28 +15,37 @@ public class Transitioner : MonoBehaviour
     string sceneChangeTarget;
     public void OnEnable()
     {
+        FadeInCall();
+    }
+
+    public void FadeInCall()
+    {
         StartCoroutine(FadeInStack());
     }
-
-    public void FadeOutCall(bool toPlacing)
+    public void FadeOutCall(bool died)
     {
-        StartCoroutine(FadeOutStack());
+        StartCoroutine(FadeOutStack(died));
     }
 
-    public IEnumerator FadeOutStack()
+    public IEnumerator FadeOutStack(bool died)
     {
         transform.GetChild(0).gameObject.SetActive(true);
+        Debug.Log("Test1");
         FadeOut();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2f);
+        if (died)
+        {
+            SceneManager.LoadScene("DeadScene");
+        }
+        else
             SetFaderInactive();
 
     }
     public IEnumerator FadeInStack()
     {
-
         transform.GetChild(0).gameObject.SetActive(true);
         FadeIn();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         SetFaderInactive();
     }
 
