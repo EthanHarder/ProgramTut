@@ -24,7 +24,7 @@ public class AtmosphereManager: MonoBehaviour
     {
         camLocalReferance = GameObject.Find("Main Camera").transform;
         currentMood = FindMood();
-        Debug.Log(currentMood.ToString());
+        //Debug.Log(currentMood.ToString());
     }
     public AtmosphereManager(List<GameObject> pAL, float timeBP)
     {

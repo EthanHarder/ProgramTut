@@ -62,7 +62,7 @@ public class Transitioner : MonoBehaviour
 
     public void SetFaderInactive()
     {
-        Debug.Log("SetFalse");
+        //Debug.Log("SetFalse");
         transform.GetChild(0).gameObject.SetActive(false);
     }
 }

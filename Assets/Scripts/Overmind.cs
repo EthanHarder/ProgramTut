@@ -6,6 +6,9 @@ public class Overmind : MonoBehaviour
 {
     public static Overmind _manager;
     AtmosphereManager atmoM;
+    public TimeManager tiM { get; private set; }
+
+    public SaveLoadManager slM { get; private set; }
     protected Transitioner TransitionSheet { get; private set; }
 
     public float atmoPace;
@@ -21,9 +24,14 @@ public class Overmind : MonoBehaviour
                 Destroy(this);
         }
 
-        atmoM = new AtmosphereManager(AtmoParticleList, atmoPace);
+        //atmoM = new AtmosphereManager(AtmoParticleList, atmoPace);
         atmoM = GetComponent<AtmosphereManager>();
+        tiM = GetComponent<TimeManager>();
+        slM = GetComponent<SaveLoadManager>(); 
         TransitionSheet = GameObject.Find("Transition").GetComponent<Transitioner>();
+
+
+        slM.LoadGame();
         
     }
 
@@ -37,6 +45,7 @@ public class Overmind : MonoBehaviour
         TransitionSheet.FadeOutCall(died);
     }
 
+    
 
 
 
