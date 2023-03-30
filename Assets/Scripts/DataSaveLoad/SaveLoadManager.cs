@@ -23,7 +23,7 @@ public class SaveLoadManager : MonoBehaviour
     public void LoadGame()
     {
         if (fileWork == null)
-            fileWork = new FileManip(Application.persistentDataPath, fileName);
+            fileWork = new FileManip(Application.persistentDataPath, fileName, true);
         saveFileInfo = fileWork.Load();
 
         if (this.saveFileInfo == null)
@@ -48,6 +48,12 @@ public class SaveLoadManager : MonoBehaviour
         Debug.Log("Saved Time = " + saveFileInfo.timer);
     }
 
+    
+    private void OnApplicationQuit()
+    {
+        SaveGame();
+    }
+    
 
     public void DestroySaveData()
     {

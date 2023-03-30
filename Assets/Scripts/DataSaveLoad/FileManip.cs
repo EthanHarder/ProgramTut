@@ -9,10 +9,17 @@ public class FileManip
 {
     private string dataDirect;
     private string dataFileName;
-    public FileManip(string dataDirect, string dataFileName)
+
+    //Encryption Functionality
+    bool shouldEncrypt = true;
+    string keyEncrypt = "goober"; //idk, why not.
+
+
+    public FileManip(string dataDirect, string dataFileName, bool shouldEncrypt)
     {
         this.dataDirect = dataDirect;
         this.dataFileName = dataFileName;
+        this.shouldEncrypt = shouldEncrypt;
     }
 
     public SaveFileInfo Load()
@@ -31,6 +38,11 @@ public class FileManip
                     {
                         dataTemp = reader.ReadToEnd();
                     }
+                }
+
+                if (shouldEncrypt)
+                {
+                    dataTemp = EncryptInOut(dataTemp);
                 }
 
                 loadedData = JsonUtility.FromJson<SaveFileInfo>(dataTemp);
@@ -53,13 +65,18 @@ public class FileManip
         {
             Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 
-            string dataToStore = JsonUtility.ToJson(data, true);
+            string dataTemp = JsonUtility.ToJson(data, true);
+
+            if (shouldEncrypt)
+            {
+                dataTemp = EncryptInOut(dataTemp);
+            }
 
             using (FileStream stream = new FileStream(filePath, FileMode.Create))
             {
                 using (StreamWriter writer = new StreamWriter(stream))
                 {
-                    writer.Write(dataToStore);
+                    writer.Write(dataTemp);
                 }
             }
         }
@@ -74,5 +91,15 @@ public class FileManip
         string filePath = Path.Combine(dataDirect, dataFileName);
         File.Delete(filePath);
         Debug.Log("Delete Attempt");
+    }
+
+    private string EncryptInOut(string data)
+    {
+        string modifiedData = "";
+        for (int i = 0; i < data.Length; i++)
+        {
+            modifiedData += (char)(data[i] ^ keyEncrypt[i % keyEncrypt.Length]);
+        }
+        return modifiedData;
     }
 }
