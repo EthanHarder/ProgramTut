@@ -26,14 +26,16 @@ public class SaveLoadManager : MonoBehaviour
             fileWork = new FileManip(Application.persistentDataPath, fileName);
         saveFileInfo = fileWork.Load();
 
-            if (this.saveFileInfo == null)
-            {
-                Debug.Log("No data was found! Initializing data to defaults.");
-                NewGame();
-            }
-
+        if (this.saveFileInfo == null)
+        {
+            Debug.Log("No data was found! Initializing data to defaults.");
+            NewGame();
+        }
         Overmind._manager.tiM.externalUpdateTime(saveFileInfo.timer);
-        PlayerSingleton.pInstance.pTransform.position = saveFileInfo.playerPos;
+        if (PlayerSingleton.pInstance != null)
+        {
+            PlayerSingleton.pInstance.pTransform.position = saveFileInfo.playerPos;
+        }
             Debug.Log("Loaded Time = " + saveFileInfo.timer);
     }
 

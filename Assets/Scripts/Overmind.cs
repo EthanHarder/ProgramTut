@@ -31,7 +31,7 @@ public class Overmind : MonoBehaviour
         TransitionSheet = GameObject.Find("Transition").GetComponent<Transitioner>();
 
 
-        slM.LoadGame();
+        Invoke("LoadRequest",0.1f); //I am very unhappy that it seems to need this...
         
     }
 
@@ -45,6 +45,10 @@ public class Overmind : MonoBehaviour
         TransitionSheet.FadeOutCall(died);
     }
 
+    public void LoadRequest()
+    {
+        slM.LoadGame();
+    }
     
 
 

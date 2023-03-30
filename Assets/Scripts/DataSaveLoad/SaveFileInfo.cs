@@ -14,7 +14,6 @@ public class SaveFileInfo
         timer = Overmind._manager.tiM.maxTime;
 
         playerPos = new Vector3(-3f, 0.3f, 2.5f);
-        Debug.Log(playerPos);
     }
 
 }
