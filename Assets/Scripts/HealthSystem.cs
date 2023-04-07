@@ -9,7 +9,7 @@ public class HealthSystem : MonoBehaviour
     public List<string> validDamageSources;
     [SerializeField]
     public int _health;
-    public void RecieveDamageAttempt(string source)
+    public virtual void RecieveDamageAttempt(string source)
     {
        foreach (string s in validDamageSources)
         {

@@ -67,6 +67,7 @@ public abstract class EnemyReactBody : MonoBehaviour
         if (other.rigidbody != null && other.rigidbody.GetComponent<HealthSystem>() != null)
         {
             other.rigidbody.GetComponent<HealthSystem>().RecieveDamageAttempt("Enemy");
+            other.rigidbody.GetComponent<playerControl>().RecieveMotionChange(BuildLaunchDirection(other));
         }
     }
 
@@ -79,6 +80,13 @@ public abstract class EnemyReactBody : MonoBehaviour
     {
         if (alertTimer > 0.0f)
         alertTimer -= Time.deltaTime;
+    }
+
+    private MovementChange<Vector3> BuildLaunchDirection(Collision collider)
+    {
+        MovementChange<Vector3> launch = new MovementChange<Vector3>();
+        launch.change = new Vector3(15 * (collider.gameObject.GetComponent<Transform>().position.x - transform.position.x), 15 * (collider.gameObject.GetComponent<Transform>().position.y - transform.position.y), 15 * (collider.gameObject.GetComponent<Transform>().position.z - transform.position.z));
+        return launch;
     }
 
 }

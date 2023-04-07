@@ -8,6 +8,7 @@ public class playerControl : MonoBehaviour
     public bool grounded;
     public float jumpForce;
 
+
     private Vector3 dir;
 
 
@@ -58,5 +59,31 @@ public class playerControl : MonoBehaviour
     {
         PlayerSingleton.pInstance.pRigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse );
 
+    }
+    
+    public void RecieveMotionChange(MovementChange<Vector3> launchDirection)
+    {
+        GetComponent<Rigidbody>().AddForce(launchDirection.change, ForceMode.Impulse);
+    }
+
+    public void ModifyMoveSpeed(MovementChange<float> speedChange)
+    { //It's not pretty, but movespeed slows, speed ups, etc. are all done with just this.
+          switch (speedChange.operation)
+        {
+            case "+":
+                moveSpeed += speedChange.change;
+                break;
+            case "-":
+                moveSpeed -= speedChange.change;
+                break;
+            case "*":
+                moveSpeed *= speedChange.change;
+                break;
+            case "/":
+                moveSpeed /= speedChange.change;
+                break;
+            default:
+                break;
+        }
     }
 }
